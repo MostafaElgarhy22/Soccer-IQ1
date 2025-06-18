@@ -32,6 +32,9 @@ namespace Soccer_IQ
                     };
                 });
 
+            // ❌ Commented out database and identity services for testing without SQL Server
+
+            /*
             builder.Services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -44,6 +47,7 @@ namespace Soccer_IQ
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+            */
 
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<StandingsSyncService>();
@@ -69,7 +73,8 @@ namespace Soccer_IQ
 
             app.MapControllers();
 
-            // ✅ Seed roles BEFORE app.Run()
+            // ❌ Commented out role seeding (requires DB)
+            /*
             using (var scope = app.Services.CreateScope())
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -78,6 +83,7 @@ namespace Soccer_IQ
                     await roleManager.CreateAsync(new IdentityRole("User"));
                 }
             }
+            */
 
             app.Run();
         }
