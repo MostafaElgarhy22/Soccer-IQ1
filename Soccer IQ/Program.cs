@@ -34,7 +34,7 @@ namespace Soccer_IQ
 
             // ❌ Commented out database and identity services for testing without SQL Server
 
-            /*
+            
             builder.Services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -43,11 +43,11 @@ namespace Soccer_IQ
             builder.Services.AddScoped<IRepository<PLayerStat>, PlayerStatRepository>();
             builder.Services.AddScoped<IRepository<LeagueStanding>, LeagueStandingRepository>();
             builder.Services.AddScoped<IRepository<ApplicationUser>, ApplicationUserRepository>();
-
+            
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
-            */
+            
 
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<StandingsSyncService>();
